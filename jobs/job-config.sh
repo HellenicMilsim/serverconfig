@@ -28,7 +28,7 @@ function server_stop(name){
 
 function server_start(server){
 	echo "${TS} - Starting server: $name"
-	if [ ! -f /tmp/foo.txt ]; then
+	if [ ! -f "$MAINTENANCE_FILE" ]; then
 		`~./$name force-update`
 		`~./$name start`
 	else
