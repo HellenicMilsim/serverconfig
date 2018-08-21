@@ -3,42 +3,14 @@ services:
   files:
     image:                 nextcloud
     restart:               always
-    links:
-      - db
     ports:
       - 8080:80
     volumes:
       - files_data:        /var/www/html/data
       - files_config:      /var/www/html/config
-  db:
-    image:                 mysql:8.0.12
-    command:               --default-character-set=utf8
-    restart:               always
-    volumes:
-      - db_data:           /var/lib/mysql
-    environment:
-      MYSQL_USER_FILE:     /run/secrets/db_user
-      MYSQL_PASSWORD_FILE: /run/secrets/db_password
-
-    secrets:
-      - db_user
-      - db_password
-  db_man:
-    image:                 adminer
-    restart:               always
-    ports:
-      - 8080:8080
 
 volumes:
-  db_data:
-    external:              true
   files_data:
     external:              true
   files_config:
-    external:              true
-
-secrets:
-  db_password:
-    external:              true
-  db_user:
     external:              true
