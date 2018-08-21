@@ -9,7 +9,7 @@ groups=(a3-mission-uploaders a3-log-viewers)
 
 echo "${TS} - Starting task: create-user"
 
-useradd -Dm $user
+useradd -m -s /bin/bash $user
 
 echo "${TS} - Adding key"
 # Create required directories
